@@ -24,3 +24,4 @@ require('flatpickr')
 require('flatpickr/dist/l10n/ja')
 
 require("./node_modules/flatpickr/dist/themes/material_blue.css")
+requiew("./graph")

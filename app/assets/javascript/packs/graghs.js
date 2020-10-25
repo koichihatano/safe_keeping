@@ -2,7 +2,6 @@
                         const minDate = (date1, date2) => (date1 < date2) ? date1 : date2
                         const maxDate = (date1, date2) => (date1 > date2) ? date1 : date2
 
-                        // データの初日・最終日
                         const START_DATE = convertDate(gon.yen_records[0].date)
                         const END_DATE = convertDate(gon.yen_records[gon.weight_records.length - 1].date)
                         const convertDate = (date) => new Date(new Date(date).setHours(0, 0, 0, 0))
@@ -12,12 +11,9 @@
                         const A_MONTH_AGO = new Date(TODAY.getFullYear(), TODAY.getMonth() - 1, TODAY.getDate() + 1)
                         const THREE_MONTHS_AGO = new Date(TODAY.getFullYear(), TODAY.getMonth() - 3, TODAY.getDate() + 1)
 
-                        // グラフを描く場所を取得
                         const chartYenContext = document.getElementById("chart-yen").getContext('2d')
                         let chartYen
-                        // 期間を指定してグラフを描く
                         const drawGraph = (from, to) => {
-                            // from から to までの期間のデータに絞る
                             let records = gon.yen_records.filter((record) => {
                                 let date = convertDate(record.date)
                                 return from <= date && date <= to
@@ -27,7 +23,6 @@
                                 let to = minDate(TODAY, END_DATE)
                                 drawGraph(from, to)
                             }
-
                             document.getElementById('a-week-button').addEventListener('click', () => {
                                 drawGraphToToday(A_WEEK_AGO)
                             })
