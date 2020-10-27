@@ -13,4 +13,32 @@
     <input type="button" value="過去３ヶ月" id="three-months-button" class="btn btn-success btn-block mt-3">
   </div>
 </div>
+<div class="row no-gutters">
+  <div class="input-group col-sm-6 pr-sm-3 mt-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">開始</span>
+    </div>
+    <input type="text" id="start-calendar" class="form-control bg-white text-center">
+  </div>
+  <div class="input-group col-sm-6 pl-sm-3 mt-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">終了</span>
+    </div>
+    <input type="text" id="end-calendar" class="form-control bg-white text-center">
+  </div>
+
+<div class="row">
+  <div class="col-6">
+    <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#new-modal">
+      新規登録
+    </button>
+  </div>
+  <div class="col-6">
+    <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#edit-modal">
+      記録の修正
+    </button>
+  </div>
+</div>
+<%= render 'modal', action: 'new', title: '新規登録' %>
+<%= render 'modal', action: 'edit', title: '修正' %>
 <canvas id="chart-yen" class="mt-5"></canvas>
