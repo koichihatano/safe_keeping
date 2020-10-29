@@ -7,9 +7,9 @@ document.addEventListener("turbolinks:load", () => {
     const minDate = (date1, date2) => (date1 < date2 ? date1 : date2);
     const maxDate = (date1, date2) => (date1 > date2 ? date1 : date2);
 
-    const START_DATE = convertDate(gon.yen_records[0].date);
+    const START_DATE = convertDate(gon.graph_records[0].date);
     const END_DATE = convertDate(
-      gon.yen_records[gon.yen_records.length - 1].date
+      gon.graph_records[gon.graph_records.length - 1].date
     );
 
     flatpickr.localize(flatpickr.l10ns.ja);
@@ -53,7 +53,8 @@ document.addEventListener("turbolinks:load", () => {
       let record = gon.yen_records.find(
         (record) => record.date === editCalendar.value
       );
-      editYen.value = record.yen;
+      editYen.value = record.yen
+      editRemain.value = record.remain
     }
 
     // 記録編集用のカレンダー
@@ -63,7 +64,7 @@ document.addEventListener("turbolinks:load", () => {
       enable: gon.recorded_dates,
       // 記録が無い場合は日付を選択できないようにする
       noCalendar: gon.recorded_dates.length === 0,
-      onChange: inputYen,
+      onChange: inputYen
     })
     const TODAY = convertDate(new Date());
     const A_WEEK_AGO = new Date(
@@ -93,12 +94,12 @@ document.addEventListener("turbolinks:load", () => {
     let chartYen
 
     const drawGraph = (from, to) => {
-      let records = gon.yen_records.filter((record) => {
+      let records = gon.graph_records.filter((record) => {
         let date = convertDate(record.date)
         return from <= date && date <= to
       })
       let dates = records.map((record) => {
-        return record.date.replace(/^\d+-0*(\d+)-0*(\d+)$/, "$1/$2");
+        return record.date.replace(/^\d+-0*(\d+)-0*(\d+)$/, "$1/$2")
       })
       // 金額のみのデータを作成
       let yens = records.map((record) => record.yen)
@@ -116,7 +117,7 @@ document.addEventListener("turbolinks:load", () => {
       }
 
       let remains = records.map((record) => record.remain)
-
+      debugger
       let remainDatasets = {
         type: 'bar',
         label: '予算(remain)',
@@ -162,7 +163,7 @@ document.addEventListener("turbolinks:load", () => {
       }
       if (!chartYen) {
         chartYen = new Chart(chartYenContext, {
-          type: "bar",
+          type: 'bar',
           data: graphData,
           options: options,
         })
