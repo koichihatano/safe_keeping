@@ -1,4 +1,4 @@
- EMAIL = 'test@example.com'
+ EMAIL = 'guest@example.com'
 
 START_DATE = Date.today - 11.months
 END_DATE = Date.today + 1.months
@@ -27,7 +27,7 @@ graphs = []
     user_id: user.id,
     date: date,
     yen: rand(MIN_YEN..MAX_YEN) / DIV_CONSTANT,
-    remain: rand(MIN_REMAIN..MAX_REMAIN),
+    remain: rand(MIN_REMAIN..MAX_REMAIN) / DIV_CONSTANT,
   }
 end
 
