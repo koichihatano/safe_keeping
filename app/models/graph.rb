@@ -2,7 +2,6 @@ class Graph < ApplicationRecord
   belongs_to :user
   validates :date, presence: true, uniqueness: { scope: :user_id }
   validates :yen, presence: true
-   validates :remain, presence: true
   def self.chart_data(user)
     graphs = user.graphs.order(date: :asc)
     return [{ date: Date.today, yen: nil }] if graphs.empty?
